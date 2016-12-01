@@ -46,6 +46,17 @@ In the process of doing the localization found a weird bug where the localized "
 
 I didn't report the problem at that time because it would have taken a lot of precious time, so I added it to my LINO (Last-In Never-Out) list for the future.
 
+## SoundPlayer
+
+At the beginning, each scene had its own sounds, but there were not much control, so if many debrils hit the shield the sound could get loud. To be able to control the sounds better, for example, limiting the number of simultaneous voices and easy configuration on the editor. The sound player is autoloaded and is a global singleton.
+
+Regarding the sounds, I expent long time searching for nice sounds, and nothing seemed good, at the end:
+
+* shield-hit: I made this with Audacity.
+* thrust sound: I cut a loopable second from [engine-sound](http://opengameart.org/content/engine-sound)
+* ship explosion: [muffled-distant-explosion](http://opengameart.org/content/muffled-distant-explosion) maybe I processed a little.
+* debril explosion: I cut a little bit of the beginning of [DeathFlash](http://opengameart.org/content/big-explosion)
+
 ## Music
 
 A game would be incomplete if it didn't have music. Once I decide to add it I expend long time trying to find some music to add to the game.
