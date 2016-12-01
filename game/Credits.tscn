@@ -1,0 +1,156 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://normal.tres" type="Theme" id=1]
+[ext_resource path="res://icon-64.png" type="Texture" id=2]
+[ext_resource path="res://ship64.png" type="Texture" id=3]
+
+[node name="Credits" type="Node2D"]
+
+__meta__ = { "_edit_lock_":true }
+
+[node name="Credits" type="Control" parent="."]
+
+margin/right = 40.0
+margin/bottom = 40.0
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+
+[node name="version" type="Label" parent="Credits"]
+
+margin/top = 163.0
+margin/right = 480.0
+margin/bottom = 184.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "Version: 1.0.4"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="madeby" type="Label" parent="Credits"]
+
+anchor/top = 3
+anchor/right = 1
+anchor/bottom = 3
+margin/top = -300.0
+margin/right = -440.0
+margin/bottom = -321.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "Made by"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="aaron" type="Label" parent="Credits"]
+
+margin/top = 350.0
+margin/right = 240.0
+margin/bottom = 371.0
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "Aaron PS"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="email" type="Label" parent="Credits"]
+
+margin/top = 400.0
+margin/right = 480.0
+margin/bottom = 421.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "aaronperezsanchez@hotmail.com"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="explsionby" type="Label" parent="Credits"]
+
+margin/top = 560.0
+margin/right = 480.0
+margin/bottom = 581.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "Explosion animation by"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="chabull" type="Label" parent="Credits"]
+
+margin/top = 590.0
+margin/right = 240.0
+margin/bottom = 611.0
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "chabull"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="explosionlink" type="Label" parent="Credits"]
+
+margin/top = 640.0
+margin/right = 600.0
+margin/bottom = 661.0
+rect/scale = Vector2( 0.8, 0.8 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "http://opengameart.org/content/explosions-0"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="nebulapilot" type="Label" parent="Credits"]
+
+margin/top = 112.0
+margin/right = 240.0
+margin/bottom = 133.0
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "Nebula Pilot"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 120 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 240, 270 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 432, 140 )
+transform/rot = -180.0
+texture = ExtResource( 2 )
+
+

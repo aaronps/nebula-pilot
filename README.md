@@ -36,6 +36,16 @@ I found [game-ui-simple-outline-circles](http://opengameart.org/content/game-ui-
 
 It took me several days to get the menu buttons right, the positions, the desired effects, I changed many times until the current one seemed nice enought.
 
+## Highscore and Credits scenes
+
+This two scenes needs special attention because are the only scenes which are localized in 3 languages: English, Spanish and Chinese.
+
+Regarding the Chinese localization, because it is just a couple of places, I decided to just make pngs, and avoid the whole [font import](http://docs.godotengine.org/en/stable/tutorials/asset_pipeline/importing_fonts.html#internationalization).
+
+In the process of doing the localization found a weird bug where the localized "tscn" files would be renamed to "_converted.scn" or similar and this would fail, because Godot was looking for the "name.scn" only. To fix this problem the simple way for me was to use "scn" files for the localized ones and tscn for the main one.
+
+I didn't report the problem at that time because it would have taken a lot of precious time, so I added it to my LINO (Last-In Never-Out) list for the future.
+
 ## Music
 
 A game would be incomplete if it didn't have music. Once I decide to add it I expend long time trying to find some music to add to the game.
