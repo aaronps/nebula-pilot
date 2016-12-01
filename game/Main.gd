@@ -33,7 +33,7 @@ var DebrilClass = preload("res://debril/Debril.gd")
 var player
 var alive_time = 0.0
 
-# mjoy is mouse joystick, click to set center, drag to move it, it is square, not circle.
+# mjoy is mouse joystick, click to set center, drag to move it.
 var mjoy_ismoving = false
 var mjoy_center = Vector2()
 var mjoy_pos = Vector2()
