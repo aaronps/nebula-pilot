@@ -1,0 +1,491 @@
+[gd_scene load_steps=29 format=1]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://backgroundstars/BackgroundStars.tscn" type="PackedScene" id=2]
+[ext_resource path="res://dejavumono-20.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://highscores/HighScores.tscn" type="PackedScene" id=4]
+[ext_resource path="res://menu/menu.atex" type="Texture" id=5]
+[ext_resource path="res://menu/sound.atex" type="Texture" id=6]
+[ext_resource path="res://menu/soundOff.atex" type="Texture" id=7]
+[ext_resource path="res://menu/music.atex" type="Texture" id=8]
+[ext_resource path="res://menu/musicOff.atex" type="Texture" id=9]
+[ext_resource path="res://menu/credits.atex" type="Texture" id=10]
+[ext_resource path="res://menu/exit.atex" type="Texture" id=11]
+[ext_resource path="res://menu/close_menu.tres" type="Animation" id=12]
+[ext_resource path="res://menu/open_menu.tres" type="Animation" id=13]
+[ext_resource path="res://assets/mjoy_base.tex" type="Texture" id=14]
+[ext_resource path="res://assets/mjoy_pin.tex" type="Texture" id=15]
+[ext_resource path="res://Credits.tscn" type="PackedScene" id=16]
+[ext_resource path="res://music/MusicPlayer.gd" type="Script" id=17]
+
+
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 240, 400 )
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "\nextends TextureButton\n\n#\n# This little script is needed so the \"texture buttons\" accepts touch from more than the first finger\n#\n\n#func _ready():\n#\tset_process_input(true)\n\nfunc _input(event):\n\tif event.type == InputEvent.SCREEN_TOUCH and event.is_pressed() and event.index > 0 and get_rect().has_point(event.pos):\n\t\tget_tree().set_input_as_handled()\n\t\temit_signal(\"pressed\")\n\n"
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "\nextends TextureButton\n\nfunc _ready():\n\tset_pressed(!UserPrefs.sound_on)\n"
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "\nextends TextureButton\n\nfunc _ready():\n\tset_pressed(!UserPrefs.music_on)\n"
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "\nextends TextureButton\n\n# member variables here, example:\n# var a=2\n# var b=\"textvar\"\n\nfunc _ready():\n\tif OS.get_name() == \"iOS\":\n\t\t# no exit button on iOS\n\t\tset_disabled(true)\n\t\thide()\n\n\n"
+
+[sub_resource type="Animation" id=6]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("/AnimationPlayer:playback/play")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ "show" ] }
+
+[sub_resource type="Animation" id=7]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("game:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("game/sprites:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 1.0 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ui:visibility/opacity")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("ui/label_time:text")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ "0.000" ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ui/label_time:visibility/visible")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("ui/label_time:visibility/self_opacity")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 1.0 ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("ui/highscores:visibility/visible")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("ui/MenuButton:visibility/visible")
+tracks/7/interp = 1
+tracks/7/imported = false
+tracks/7/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/8/type = "value"
+tracks/8/path = NodePath("ui/MenuButton:visibility/opacity")
+tracks/8/interp = 1
+tracks/8/imported = false
+tracks/8/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 1.0 ] }
+tracks/9/type = "value"
+tracks/9/path = NodePath("StreamPlayer:stream/volume_db")
+tracks/9/interp = 1
+tracks/9/imported = false
+tracks/9/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 0.0 ] }
+
+[sub_resource type="Animation" id=8]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Credits:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Credits:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ui/label_time:visibility/self_opacity")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("ui/highscores:visibility/opacity")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ui/MenuButton:visibility/opacity")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("ui/label_time:visibility/visible")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("ui/MenuButton:visibility/visible")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("game/sprites:visibility/opacity")
+tracks/7/interp = 1
+tracks/7/imported = false
+tracks/7/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+
+[sub_resource type="Animation" id=9]
+
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ui/highscores:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("ui/highscores:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 1, 2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+
+[sub_resource type="Animation" id=10]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("game:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("ui:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Credits:visibility/opacity")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Credits:visibility/visible")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("StreamPlayer:stream/volume_db")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, -80.0 ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("StreamPlayer:stream/play")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+
+[sub_resource type="Animation" id=11]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Credits:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Credits:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ui/label_time:visibility/self_opacity")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("ui/highscores:visibility/opacity")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ui/MenuButton:visibility/opacity")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("ui/label_time:visibility/visible")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("ui/MenuButton:visibility/visible")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("game/sprites:visibility/opacity")
+tracks/7/interp = 1
+tracks/7/imported = false
+tracks/7/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+
+[node name="Main" type="Node"]
+
+process/pause_mode = 2
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"Script" }
+debril_count = 30
+debril_max_speed = 170
+attack_radius = Vector2( 120, 120 )
+max_ship_speed = 180
+
+[node name="game" type="Node2D" parent="."]
+
+process/pause_mode = 1
+visibility/opacity = 0.0
+__meta__ = { "_edit_group_":true, "_edit_lock_":true }
+
+[node name="bgstars" parent="game" instance=ExtResource( 2 )]
+
+[node name="sprites" type="Node2D" parent="game"]
+
+__meta__ = { "_edit_lock_":true }
+
+[node name="logic" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="logic"]
+
+transform/pos = Vector2( 240, 400 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 0
+collision/mask = 4
+__meta__ = { "_edit_lock_":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="logic/Area2D"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
+
+[node name="player_start_pos" type="Position2D" parent="logic"]
+
+visibility/visible = false
+transform/pos = Vector2( 240, 400 )
+
+[node name="ui" type="Node2D" parent="."]
+
+process/pause_mode = 2
+visibility/opacity = 0.0
+__meta__ = { "_edit_group_":true, "_edit_lock_":true }
+
+[node name="label_time" type="Label" parent="ui" groups=[ "ui" ]]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 129.0
+margin/top = 7.0
+margin/right = 245.0
+margin/bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.984314, 0.980392, 0.803922, 1 )
+custom_colors/font_color_shadow = Color( 0.937255, 0.258824, 0.258824, 1 )
+text = "0.000"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="highscores" parent="ui" instance=ExtResource( 4 )]
+
+visibility/visible = false
+visibility/opacity = 0.0
+stretch_mode = 0
+
+[node name="MenuButton" type="TextureButton" parent="ui"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 400.0
+margin/top = 0.0
+margin/right = 480.0
+margin/bottom = 80.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 5 )
+script/script = SubResource( 2 )
+
+[node name="Buttons" type="Node2D" parent="ui/MenuButton"]
+
+visibility/visible = false
+visibility/opacity = 0.0
+
+[node name="SoundButton" type="TextureButton" parent="ui/MenuButton/Buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 80.0
+margin/bottom = 80.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 6 )
+textures/pressed = ExtResource( 7 )
+script/script = SubResource( 3 )
+
+[node name="MusicButton" type="TextureButton" parent="ui/MenuButton/Buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 80.0
+margin/bottom = 80.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 8 )
+textures/pressed = ExtResource( 9 )
+script/script = SubResource( 4 )
+
+[node name="CreditsButton" type="TextureButton" parent="ui/MenuButton/Buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 80.0
+margin/bottom = 80.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 10 )
+
+[node name="ExitButton" type="TextureButton" parent="ui/MenuButton/Buttons"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 80.0
+margin/bottom = 80.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 11 )
+script/script = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/close_menu = ExtResource( 12 )
+anims/open_menu = ExtResource( 13 )
+anims/show_credits = SubResource( 6 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="MJoy" type="Sprite" parent="ui"]
+
+visibility/visible = false
+texture = ExtResource( 14 )
+
+[node name="pin" type="Sprite" parent="ui/MJoy"]
+
+texture = ExtResource( 15 )
+
+[node name="Credits" parent="." instance=ExtResource( 16 )]
+
+visibility/visible = false
+visibility/opacity = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/enter_readytostart = SubResource( 7 )
+anims/hide_credits = SubResource( 8 )
+anims/on_player_died = SubResource( 9 )
+anims/restart_from_die = SubResource( 10 )
+anims/show_credits = SubResource( 11 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = null
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 50
+script/script = ExtResource( 17 )
+
+[connection signal="body_exit" from="logic/Area2D" to="." method="_on_Area2D_body_exit"]
+
+[connection signal="pressed" from="ui/MenuButton" to="." method="_on_MenuButton_pressed"]
+
+[connection signal="toggled" from="ui/MenuButton/Buttons/SoundButton" to="." method="_on_SoundButton_toggled"]
+
+[connection signal="toggled" from="ui/MenuButton/Buttons/MusicButton" to="." method="_on_MusicButton_toggled"]
+
+[connection signal="pressed" from="ui/MenuButton/Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+
+[connection signal="pressed" from="ui/MenuButton/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]
+
+
