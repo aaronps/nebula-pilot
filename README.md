@@ -1,5 +1,11 @@
 # Nebula Pilot
 
+**Note:** Currently adding/reviewing the code wait until this notice dissapears.
+
+# License
+
+Currently undecided, so for the moment [no license](http://choosealicense.com/no-license/).
+
 ## Background Stars
 
 In the beginning the background was just some dots simulating starts, different dots would move at different speeds as to simulate more distance from the viewer, dots going out of the bottom of the screen would come in from the top at a new randomized loction and speed, this came directly from the java version of the game but didn't look so nice.
