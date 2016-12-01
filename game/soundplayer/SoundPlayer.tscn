@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://soundplayer/SmallExplosion.smp" type="Sample" id=1]
+[ext_resource path="res://soundplayer/mexplosion.smp" type="Sample" id=2]
+[ext_resource path="res://soundplayer/shield-hit.smp" type="Sample" id=3]
+[ext_resource path="res://soundplayer/thurst2.smp" type="Sample" id=4]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/SmallExplosion = { "db":-10.0, "pitch":1.0, "sample":ExtResource( 1 ) }
+samples/mexplosion = { "db":10.0, "pitch":1.0, "sample":ExtResource( 2 ) }
+samples/shield-hit = { "db":-10.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/thurst2 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 4 ) }
+
+[node name="SamplePlayer2D" type="SamplePlayer"]
+
+config/polyphony = 16
+config/samples = SubResource( 1 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+
