@@ -1,6 +1,6 @@
 # Nebula Pilot
 
-**Note:** Currently adding/reviewing the code wait until this notice dissapears.
+**Note:** README unfinished, game playable.
 
 # License
 
