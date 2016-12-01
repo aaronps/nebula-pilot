@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://backgroundstars/1.tex" type="Texture" id=1]
+[ext_resource path="res://backgroundstars/BackgroundStars.gd" type="Script" id=2]
+
+[node name="bg" type="Sprite"]
+
+texture = ExtResource( 1 )
+centered = false
+region = true
+region_rect = Rect2( 0, 0, 480, 800 )
+script/script = ExtResource( 2 )
+__meta__ = { "__editor_plugin_screen__":"Script" }
+
+
