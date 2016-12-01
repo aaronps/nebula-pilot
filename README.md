@@ -21,6 +21,21 @@ Once I had some assets, I made a scene to encapsulate the logic:
 * The background position is randomized at the start, so it is very difficult to see two times the same background.
 * Background textures are loaded in a thread, this is because they are somewhat big and on a mobile phone it adds a noticeable pause/delay.
 
+## Menu Buttons
+
+Because I wanted to add several languages to the game and wanted to save on translations, I began looking for some generic buttons and UI elements that I could use on the menu without text.
+
+I found [game-ui-simple-outline-circles](http://opengameart.org/content/game-ui-simple-outline-circles) which is in public domain and had all I needed but looked too simple, so I modified like this:
+
+* Open with Gimp
+* Duplicate layer
+* Select top layer, Colors -> Colorify
+* Select bottom layer, Colors -> Colorify
+* Move bottom layer 2 pixels right and down
+* Export as png
+
+It took me several days to get the menu buttons right, the positions, the desired effects, I changed many times until the current one seemed nice enought.
+
 ## Music
 
 A game would be incomplete if it didn't have music. Once I decide to add it I expend long time trying to find some music to add to the game.
