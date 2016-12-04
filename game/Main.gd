@@ -194,7 +194,12 @@ func _unhandled_input(event):
 	if state == STATE_NOT_STARTED:
 		var shall_start = false
 		if event.type == InputEvent.JOYSTICK_MOTION:
-			shall_start = abs(event.value) > 0.5 and ( event.is_action("ship_up") or event.is_action("ship_left") )
+			shall_start = abs(event.value) > 0.5 and (
+							   event.is_action("ship_up")
+							or event.is_action("ship_down")
+							or event.is_action("ship_left")
+							or event.is_action("ship_right")
+							)
 		else:
 			shall_start = event.is_pressed() and (
 							event.is_action("ui_accept")
@@ -216,7 +221,12 @@ func _unhandled_input(event):
 	elif state == STATE_PLAYING_PAUSED:
 		var shall_start = false
 		if event.type == InputEvent.JOYSTICK_MOTION:
-			shall_start = abs(event.value) > 0.5 and ( event.is_action("ship_up") or event.is_action("ship_left") )
+			shall_start = abs(event.value) > 0.5 and (
+							   event.is_action("ship_up")
+							or event.is_action("ship_down")
+							or event.is_action("ship_left")
+							or event.is_action("ship_right")
+							)
 		else:
 			shall_start = event.is_pressed() and (
 					        event.is_action("ship_mousemove")
@@ -292,20 +302,21 @@ func _unhandled_input(event):
 	if state == STATE_PLAYING:
 		
 		if event.type == InputEvent.JOYSTICK_MOTION:
-			#only need to check for one axis of each
-			if event.is_action("ship_up"):
+			#only need to check for one axis of each ---> this isn't true anymore
+			# now seems godot has fixed something, need to check for both directions
+			if event.is_action("ship_up") or event.is_action("ship_down"):
 				get_tree().set_input_as_handled()
 				if abs(event.value) >= MIN_JOYSTICK_DIS:
 					player.set_input_force_y(event.value)
 				else:
 					player.set_input_force_y(0)
-			elif event.is_action("ship_left"):
+			elif event.is_action("ship_left") or event.is_action("ship_right"):
 				get_tree().set_input_as_handled()
 				if abs(event.value) >= MIN_JOYSTICK_DIS:
 					player.set_input_force_x(event.value)
 				else:
 					player.set_input_force_x(0)
-		
+					
 		elif event.type == InputEvent.MOUSE_MOTION and mjoy_ismoving:
 			get_tree().set_input_as_handled()
 			if mjoy_pos != event.pos:
