@@ -2,9 +2,13 @@
 
 **Note:** README unfinished, game playable.
 
+![Nebula Pilot Feature pic](spics/nebula-pilot-feature.png)
+
 # License
 
 Currently undecided, so for the moment [no license](http://choosealicense.com/no-license/).
+
+
 
 ## Background Stars
 
