@@ -10,7 +10,7 @@ This is the cultimation of my attemps to reproduce an old game about avoiding bu
 
 Around year 2001 I was working in China and some coworkers showed me this small game (in Chinese) where you fly a space ship and you have to avoid some bullets, the tittle said somethine like: "If you are man, survive 20 seconds".
 
-The first version was an Android only game using Java, It was almost finished but due to life had to switch my attention to other tasks. That version will be uploaded sometime later.
+The first version was an Android only game using Java, [also on github](https://github.com/aaronps/traction), It was almost finished but due to life had to switch my attention to other tasks.
 
 On 2016 I got free of my dutties and decided to finish several things I couldn't over the years while working on a company. This is the end result.
 
