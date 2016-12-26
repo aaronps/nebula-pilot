@@ -32,7 +32,7 @@ Random future ideaa for Nebula Pilot 3d:
 
 # License
 
-Currently undecided, so for the moment [no license](http://choosealicense.com/no-license/).
+Licensed under MIT
 
 # Game
 
